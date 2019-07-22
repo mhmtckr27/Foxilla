@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2003656648453013159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4935027531178101298}
+  - component: {fileID: 6979170460012700980}
+  m_Layer: 0
+  m_Name: Room LRT Templates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4935027531178101298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003656648453013159}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6979170460012700980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2003656648453013159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4306923c7a51ca4dbd9305031d422da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 483341888440097701, guid: 9c4e47191ada6b44391fdef61565745a, type: 3}
+  - {fileID: 483341888440097701, guid: b46edef10cf9f7b4eb9ac706d3669789, type: 3}
+  - {fileID: 483341888440097701, guid: e0c943ebd18042641975a8db3daae1a4, type: 3}
+  - {fileID: 483341888440097701, guid: 0fa636f54aef85f4598671060ee9c747, type: 3}
+  - {fileID: 483341888440097701, guid: 25f01c719f73cb140b170ce473cfbe5e, type: 3}
+  - {fileID: 483341888440097701, guid: 1dfaa1598b89fd242ad1b3017e664dea, type: 3}
