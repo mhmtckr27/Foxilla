@@ -1,2 +1,2 @@
 # Foxilla 
-is a 2D Action-Adventure Platformer game developed and published by Mehmet Hayri Çakır
+2D Action-Adventure Platformer game developed and published by Mehmet Hayri Çakır
