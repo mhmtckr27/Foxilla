@@ -49,20 +49,43 @@ public class PlayerInput : MonoBehaviour
 			directionalInput = new Vector2(Mathf.Abs(joystick.Horizontal) >= joystickTolerance ? joystick.Horizontal : 0, joystick.Vertical);
 		}
 		*/
-		directionalInput = new Vector2(Input.GetAxisRaw("Horizontal") + (CrossPlatformInputManager.GetButton("GoLeft") ? -1 : (CrossPlatformInputManager.GetButton("GoRight") ? 1 : 0)) + (Mathf.Abs(joystick.Horizontal) >= joystickTolerance ? joystick.Horizontal : 0), joystick.Vertical);
+		if(Application.platform != RuntimePlatform.WindowsPlayer)
+		{
+			directionalInput = new Vector2(Input.GetAxisRaw("Horizontal") + (CrossPlatformInputManager.GetButton("GoLeft") ? -1 : (CrossPlatformInputManager.GetButton("GoRight") ? 1 : 0)) + (Mathf.Abs(joystick.Horizontal) >= joystickTolerance ? joystick.Horizontal : 0), joystick.Vertical);
+		}
+		else
+		{
+			directionalInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0);
+		}
 
 		directionalInput.x = directionalInput.x > 0 ? 1 : (directionalInput.x < 0 ? -1 : 0);
 		player.SetDirectionalInput(directionalInput);
 
-		if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Jump"))
+		if(Application.platform != RuntimePlatform.WindowsPlayer)
 		{
-			player.OnJumpInputDown();
-			anim.SetBool("animJump", true);
-		}
+			if (Input.GetKeyDown(KeyCode.Space) || CrossPlatformInputManager.GetButtonDown("Jump"))
+			{
+				player.OnJumpInputDown();
+				anim.SetBool("animJump", true);
+			}
 
-		if (Input.GetKeyUp(KeyCode.Space)  || CrossPlatformInputManager.GetButtonUp("Jump"))
+			if (Input.GetKeyUp(KeyCode.Space)  || CrossPlatformInputManager.GetButtonUp("Jump"))
+			{
+				player.OnJumpInputUp();
+			}
+		}
+		else
 		{
-			player.OnJumpInputUp();
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				player.OnJumpInputDown();
+				anim.SetBool("animJump", true);
+			}
+
+			if (Input.GetKeyUp(KeyCode.Space))
+			{
+				player.OnJumpInputUp();
+			}
 		}
 
 		ControlAnimations();
@@ -70,19 +93,39 @@ public class PlayerInput : MonoBehaviour
 
 	void ControlAnimations()
 	{
-		if (CrossPlatformInputManager.GetButtonDown("Crouch"))
+		if(Application.platform != RuntimePlatform.WindowsPlayer)
 		{
-			if(player.controller.hit)
+			if (CrossPlatformInputManager.GetButtonDown("Crouch"))
 			{
-				if(player.controller.hit.collider.tag != "PlatformMoveThrough")
+				if(player.controller.hit)
 				{
-					anim.SetBool("animCrouch", true);
+					if(player.controller.hit.collider.tag != "PlatformMoveThrough")
+					{
+						anim.SetBool("animCrouch", true);
+					}
 				}
 			}
+			if (CrossPlatformInputManager.GetButtonUp("Crouch"))
+			{
+				anim.SetBool("animCrouch", false);
+			}
 		}
-		if (CrossPlatformInputManager.GetButtonUp("Crouch"))
+		else
 		{
-			anim.SetBool("animCrouch", false);
+			if (Input.GetKeyDown(KeyCode.LeftControl))
+			{
+				if(player.controller.hit)
+				{
+					if(player.controller.hit.collider.tag != "PlatformMoveThrough")
+					{
+						anim.SetBool("animCrouch", true);
+					}
+				}
+			}
+			if (Input.GetKeyUp(KeyCode.LeftControl))
+			{
+				anim.SetBool("animCrouch", false);
+			}
 		}
 
 		if (anim.GetBool("animJump"))
